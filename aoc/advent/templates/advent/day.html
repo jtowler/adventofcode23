@@ -1,0 +1,11 @@
+{% load static %}
+<h1>Day {{ day_id }}</h1>
+<script src="{% static 'advent/js/' %}day_{{ day_id }}.js"></script>
+Input data
+<input id="input" type="text" />
+<h3 id="part-1">Part 1</h3>
+<button onclick="part1()">Run part 1</button>
+<h5 id="part-1-answer"></h5>
+<h3 id="part-2">Part 2</h3>
+<button onclick="part2()">Run part 2</button>
+<h5 id="part-2-answer"></h5>

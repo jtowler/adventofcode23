@@ -240,3 +240,4 @@ cython_debug/
 #.idea/
 
 resources/
+/aoc/advent/migrations/

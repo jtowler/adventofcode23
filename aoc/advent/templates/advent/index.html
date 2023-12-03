@@ -1,7 +1,7 @@
 {% if all_days %}
     <ul>
     {% for day in all_days %}
-        <li><a href="{% url 'day' day.day_id %}">{{ day.day_id }}</a></li>
+        <li><a href="{% url 'day' day.day_id %}">{{ day.day_id }}: {{ day.title }}</a></li>
     {% endfor %}
     </ul>
 {% else %}

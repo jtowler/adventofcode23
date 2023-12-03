@@ -8,7 +8,7 @@ class DataInline(admin.StackedInline):
 
 class DayAdmin(admin.ModelAdmin):
     fieldsets = [
-        (None, {"fields": ["day_id"]}),
+        (None, {"fields": ["day_id", "title"]}),
     ]
     inlines = [DataInline]
 

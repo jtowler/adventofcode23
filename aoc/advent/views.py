@@ -19,4 +19,4 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         """Retur days ordered by ID."""
-        return Day.objects.order_by("-day_id")
+        return Day.objects.order_by("day_id")

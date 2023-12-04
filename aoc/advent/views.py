@@ -18,5 +18,5 @@ class IndexView(generic.ListView):
     context_object_name = "all_days"
 
     def get_queryset(self):
-        """Retur days ordered by ID."""
+        """Return days ordered by ID."""
         return Day.objects.order_by("day_id")

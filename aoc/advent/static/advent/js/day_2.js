@@ -1,11 +1,11 @@
 function checkGame(line) {
-  var ind = line.indexOf(':');
-  var rest = line.substring(ind + 2, line.length);
+  let ind = line.indexOf(':');
+  let rest = line.substring(ind + 2, line.length);
   for (subset of rest.split("; ")) {
     for (element of subset.split(", ")) {
-      var split = element.split(' ');
-      var n = parseInt(split[0]);
-      var colour = split[1];
+      let split = element.split(' ');
+      let n = parseInt(split[0]);
+      let colour = split[1];
       if ((colour == "green" && n > 13) | (colour == "red" && n > 12) | (colour == "blue" && n > 14)) {
         return 0;
       }
@@ -18,18 +18,17 @@ function updateMin(colour, col, n, minCol) {
    if (colour == col && n > minCol) {
      return n;
    }
-   return minCol
+   return minCol;
 }
 
 function power(line) {
-  var ind = line.indexOf(':');
-  var rest = line.substring(ind + 2, line.length);
-  var minRed = 0, minGreen = 0, minBlue = 0;
+  let rest = line.substring(line.indexOf(':') + 2, line.length);
+  let minRed = 0, minGreen = 0, minBlue = 0;
     for (subset of rest.split("; ")) {
       for (element of subset.split(", ")) {
-        var split = element.split(' ');
-        var n = parseInt(split[0]);
-        var colour = split[1];
+        let split = element.split(' ');
+        let n = parseInt(split[0]);
+        let colour = split[1];
         minRed = updateMin(colour, "red", n, minRed);
         minBlue = updateMin(colour, "blue", n, minBlue);
         minGreen = updateMin(colour, "green", n, minGreen);
@@ -38,21 +37,12 @@ function power(line) {
   return minBlue * minRed * minGreen;
 }
 
-
 function part1() {
-    var data = document.getElementById("input").value.split('\n');
-    var t = 0;
-    for (line of data) {
-      t += checkGame(line);
-    }
-    document.getElementById("part-1-answer").textContent = t;
+    let data = document.getElementById("input").value.split('\n');
+    document.getElementById("part-1-answer").textContent = data.reduce((acc, cur) => acc + checkGame(cur));
 }
 
 function part2() {
-    var data = document.getElementById("input").value.split('\n');
-    var t = 0;
-    for (line of data) {
-      t += power(line);
-    }
-    document.getElementById("part-2-answer").textContent = t;
+    let data = document.getElementById("input").value.split('\n');
+    document.getElementById("part-2-answer").textContent = data.reduce((acc, cur) => acc + power(cur));
 }

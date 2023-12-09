@@ -40,7 +40,7 @@ function part1() {
       let first = chars.find((c) => c >= '0' && c <= '9');
       let last = chars.toReverse().find((c) => c >= '0' && c <= '9');
       return acc + parseInt(first + last);
-    }, 0)
+    })
     document.getElementById("part-1-answer").textContent = tot;
 }
 
@@ -50,6 +50,6 @@ function part2() {
       let first = replaceFirstString(curr).split('').find((c) => c >= '0' && c <= '9');
       let last = replaceLastString(curr).split('').toReverse().find((c) => c >= '0' && c <= '9');
       return acc + parseInt(first + last);
-    }, 0)
+    })
     document.getElementById("part-2-answer").textContent = tot;
 }

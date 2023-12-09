@@ -1,5 +1,9 @@
 {% load static %}
-<h1>Day {{ day_id }}</h1>
+{% if title %}
+  <h1>Day {{ day_id }} - {{ title }}</h1>
+{% else %}
+  <h1>Day {{ day_id }}</h1>
+{% endif %}
 <script src="{% static 'advent/js/' %}day_{{ day_id }}.js"></script>
 Input data
 <textarea id="input"></textarea>

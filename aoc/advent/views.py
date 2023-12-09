@@ -1,16 +1,18 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
 from django.views import generic
+from django.shortcuts import render
 
 from .models import Day
 
 
+
+
 def day(request, day_id):
-    return render(request, "advent/day.html", {"day_id": day_id})
-
-
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    try:
+        title = Day.objects.get(pk=day_id).title
+    except ObjectDoesNotExist:
+        title = None
+    return render(request, "advent/day.html", {"day_id": day_id, "title": title})
 
 
 class IndexView(generic.ListView):

@@ -1,17 +1,8 @@
-function getNode(nodes, n) {
-  for (node of nodes) {
-    if (node.name == n) {
-      return node;
-    }
-  }
-}
-
 function getCycle(nodes, lr, curr) {
   let t = 0;
   while (curr[curr.length - 1] != 'Z') {
-    let ind = t % lr.length;
-    let n = getNode(nodes, curr);
-    if (lr[ind] == "L") {
+    let n = nodes.find((node) => node.name == curr);
+    if (lr[t % lr.length] == "L") {
       curr = n.l;
     } else {
       curr = n.r;
@@ -36,34 +27,23 @@ function lcm(nums) {
   return result;
 }
 
-function part1() {
-  let data = document.getElementById("input").value.split('\n');
-  let instructions = data[0];
-  let nodes = [];
-  for (line of data.slice(2)) {
+function createNode(line) {
     let st = line.split(' = ');
     let st2 = st[1].split(', ');
-    nodes.push({"name": st[0], "l": st2[0].slice(1), "r": st2[1].slice(0, -1)});
-  }
-  let t = getCycle(nodes, instructions, "AAA");
+    return {"name": st[0], "l": st2[0].slice(1), "r": st2[1].slice(0, -1)};
+}
+
+function part1() {
+  let data = document.getElementById("input").value.split('\n');
+  let nodes = data.slice(2).map(createNode);
+  let t = getCycle(nodes, data[0], "AAA");
   document.getElementById("part-1-answer").textContent = t;
 }
 
 function part2() {
   let data = document.getElementById("input").value.split('\n');
-  let instructions = data[0];
-  let nodes = [];
-  for (line of data.slice(2)) {
-    let st = line.split(' = ');
-    let st2 = st[1].split(', ');
-    nodes.push({"name": st[0], "l": st2[0].slice(1), "r": st2[1].slice(0, -1)});
-  }
-  let sNodes = [];
-  for (node of nodes) {
-    if (node.name[node.name.length-1] == 'A') {
-      sNodes.push(node);
-    }
-  }
-  let cycles = sNodes.map((x) => getCycle(nodes, instructions, x.name));
+  let nodes = data.slice(2).map(createNode);
+  let sNodes = nodes.filter((node) => node.name[node.name.length - 1] == 'A');
+  let cycles = sNodes.map((x) => getCycle(nodes, data[0], x.name));
   document.getElementById("part-2-answer").textContent = lcm(cycles);
 }

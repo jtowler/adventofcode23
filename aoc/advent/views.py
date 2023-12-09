@@ -5,8 +5,6 @@ from django.shortcuts import render
 from .models import Day
 
 
-
-
 def day(request, day_id):
     try:
         title = Day.objects.get(pk=day_id).title

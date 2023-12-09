@@ -29,14 +29,11 @@ function getStarAdjacent(star, data) {
          t.push(num.value);
        }
     }
-    if (t.length == 2) {
-      return t[0] * t[1];
-    }
-    return 0;
+    return t.length == 2 ? t[0] * t[1] : 0;
 }
 
 function getNum(symbol, data) {
-  line = data[symbol.i];
+  let line = data[symbol.i];
   let j = symbol.j;
   while (!isNaN(line[j])) {
     j--;
@@ -76,7 +73,7 @@ function part1() {
 }
 
 function part2() {
-    var data = document.getElementById("input").value.split('\n');
+    let data = document.getElementById("input").value.split('\n');
     let stars = [];
     for (let i = 0; i < data.length; i++) {
       for (let j = 0; j < data[i].length; j++) {
@@ -85,9 +82,5 @@ function part2() {
         }
       }
     }
-    let t = 0;
-    for (star of stars) {
-      t += getStarAdjacent(star, data);
-    }
-    document.getElementById("part-2-answer").textContent = t;
+    document.getElementById("part-2-answer").textContent = stars.reduce((acc, cur) => acc + getStarAdjacent(cur, data), 0);
 }
